@@ -1,0 +1,126 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\reportwebvitals.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\reportwebvitals.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\console-monkey-patch.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\console-monkey-patch.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\tunes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\tunes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\setuptests.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\setuptests.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "reportWebVitals.js",
+              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\reportWebVitals.js",
+              "RelativeDocumentMoniker": "src\\reportWebVitals.js",
+              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\reportWebVitals.js",
+              "RelativeToolTip": "src\\reportWebVitals.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-02T15:58:16.734Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "console-monkey-patch.js",
+              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\console-monkey-patch.js",
+              "RelativeDocumentMoniker": "src\\console-monkey-patch.js",
+              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\console-monkey-patch.js",
+              "RelativeToolTip": "src\\console-monkey-patch.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-28T07:49:13.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "index.js",
+              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\index.js",
+              "RelativeDocumentMoniker": "src\\index.js",
+              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\index.js",
+              "RelativeToolTip": "src\\index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-28T07:48:49.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "setupTests.js",
+              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\setupTests.js",
+              "RelativeDocumentMoniker": "src\\setupTests.js",
+              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\setupTests.js",
+              "RelativeToolTip": "src\\setupTests.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-28T07:48:37.859Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "tunes.js",
+              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\tunes.js",
+              "RelativeDocumentMoniker": "src\\tunes.js",
+              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\tunes.js",
+              "RelativeToolTip": "src\\tunes.js",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAADAAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-28T07:48:23.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.js",
+              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\App.js",
+              "RelativeDocumentMoniker": "src\\App.js",
+              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\App.js",
+              "RelativeToolTip": "src\\App.js",
+              "ViewState": "AgIAACsAAAAAAAAAAAAgwEYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-28T05:29:03.876Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
