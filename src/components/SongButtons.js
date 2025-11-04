@@ -1,4 +1,4 @@
-function DJControls()
+function SongButtons()
 {
     return (
         <div className="col-md-4">
@@ -12,4 +12,4 @@ function DJControls()
         </div>
     )
 }
-export default DJControls;
+export default SongButtons;
