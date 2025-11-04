@@ -1,4 +1,4 @@
-function SongButtons()
+function SongButtons({onPlay, onStop})
 {
     return (
         <div className="col-md-4">
@@ -6,8 +6,8 @@ function SongButtons()
                 <button id="process" className="btn btn-outline-primary">Preprocess</button>
                 <button id="process_play" className="btn btn-outline-primary">Proc & Play</button>
                 <br />
-                <button id="play" className="btn btn-outline-primary">Play</button>
-                <button id="stop" className="btn btn-outline-primary">Stop</button>
+                <button id="play" className="btn btn-outline-primary" onClick={onPlay}>Play</button>
+                <button id="stop" className="btn btn-outline-primary" onClick={onStop}>Stop</button>
             </nav>
         </div>
     )

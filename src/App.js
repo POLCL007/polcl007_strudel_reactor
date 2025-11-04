@@ -22,6 +22,7 @@ const handleD3Data = (event) => {
     //console.log(`d3Data has ${d3Data.length} elements`)
 };
 
+/*
 export function SetupButtons() {
 
     document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
@@ -66,10 +67,19 @@ export function ProcessText(match, ...args) {
 
     return replace
 }
+*/
 
 export default function StrudelDemo() {
 
-const hasRun = useRef(false);
+    const hasRun = useRef(false);
+
+    const playSong = (() => {
+        globalEditor.evaluate();
+    })
+
+    const stopSong = (() => {
+        globalEditor.stop();
+    })
 
 useEffect(() => {
     if (!hasRun.current) {
@@ -104,8 +114,8 @@ useEffect(() => {
             });
             
         document.getElementById('proc').value = stranger_tune
-        SetupButtons()
-        Proc()
+        //SetupButtons()
+        //Proc()
     }
 
 }, []);
@@ -121,7 +131,7 @@ return (
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <PreprocessTextInput />
                     </div>
-                    <SongButtons />
+                    <SongButtons onPlay={playSong} onStop={stopSong} />
                 </div>
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
