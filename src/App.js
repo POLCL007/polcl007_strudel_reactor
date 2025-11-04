@@ -11,6 +11,7 @@ import { stranger_tune } from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import SongButtons from './components/SongButtons.js';
 import InstrumentControls from './components/InstrumentControls.js';
+import PreprocessTextInput from './components/PreprocessTextInput.js';
 
 let globalEditor = null;
 
@@ -118,8 +119,7 @@ return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
-                        <textarea className="form-control" rows="15" id="proc" ></textarea>
+                        <PreprocessTextInput />
                     </div>
                     <SongButtons />
                 </div>
