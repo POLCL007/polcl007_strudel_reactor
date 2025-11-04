@@ -10,14 +10,14 @@ import { registerSoundfonts } from '@strudel/soundfonts';
 import { stranger_tune } from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import SongButtons from './components/SongButtons.js';
-import InstrumentControls from './components/InstrumentControls.js';
+import DJControls from './components/DJControls.js';
 import PreprocessTextInput from './components/PreprocessTextInput.js';
 
 let globalEditor = null;
 
 const handleD3Data = (event) => {
     let d3Data = getD3Data();
-    console.log(d3Data);
+    //console.log(d3Data);
     // console.log(event.detail);
     //console.log(`d3Data has ${d3Data.length} elements`)
 };
@@ -60,9 +60,9 @@ export function Proc() {
 export function ProcessText(match, ...args) {
 
     let replace = ""
-    if (document.getElementById('flexRadioDefault2').checked) {
-        replace = "_"
-    }
+    //if (document.getElementById('flexRadioDefault2').checked) {
+    //    replace = "_"
+    //}
 
     return replace
 }
@@ -129,7 +129,7 @@ return (
                         <div id="output" />
                     </div>
                     <div className="col-md-4">
-                        <InstrumentControls />
+                        <DJControls />
                     </div>
                 </div>
             </div>
