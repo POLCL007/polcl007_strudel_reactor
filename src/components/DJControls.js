@@ -1,4 +1,6 @@
-function DJControls({volumeValue, onVolumeChange}) {
+import InstrumentControls from './InstrumentControls.js';
+
+function DJControls({ volumeValue, onVolumeChange }) {
     return (
         <>
             <div className="row mb-4">
@@ -15,19 +17,11 @@ function DJControls({volumeValue, onVolumeChange}) {
 
             <div className="row">
                 <div className="col-4">
-                    <h3>Bassline Controls</h3>
-                    <div className="input-group">
-                        <input className="m-2" type="checkbox" id="mute_bassline"></input>
-                        <label>Mute bassline</label>
-                    </div>
+                    <InstrumentControls instrumentName="bassline" />
                 </div>
 
                 <div className="col-4">
-                    <h3>main_arp </h3>
-                    <div className="input-group">
-                        <input className="m-2" type="checkbox" id="mute_main_arp"></input>
-                        <label>Mute main_arp</label>
-                    </div>
+                    <InstrumentControls instrumentName="main_arp" />
                 </div>
 
                 
