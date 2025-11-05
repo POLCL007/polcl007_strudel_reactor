@@ -11,7 +11,7 @@ import { stranger_tune } from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import SongButtons from './components/SongButtons.js';
 import DJControls from './components/DJControls.js';
-import PreprocessTextInput from './components/PreprocessTextInput.js';
+import StrudelTextVisual from './components/StrudelTextVisual.js';
 import ProcessText from './utils/ProcessText.js';
 
 let globalEditor = null;
@@ -145,7 +145,7 @@ return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <PreprocessTextInput defaultText={songText} onChange={(e) => setSongText(e.target.value)} />
+                        <StrudelTextVisual defaultText={songText} onChange={(e) => setSongText(e.target.value)} />
                     </div>
                     <SongButtons onPlay={playSong} onStop={stopSong} />
                 </div>
