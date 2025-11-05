@@ -151,8 +151,7 @@ return (
                 </div>
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <div id="editor" />
-                        <div id="output" />
+                        
                     </div>
                     <div className="col-md-4">
                         <DJControls volume={volume} onVolumeChange={(e) => setVolume(e.target.value)} />

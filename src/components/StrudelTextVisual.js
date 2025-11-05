@@ -14,26 +14,38 @@ function StrudelTextVisual({ defaultText, onChange })
         return (
             <>
                 <TextVisualOptions showInput={showInput} showRepl={showRepl} hideAll={hideAll} />
-                <label htmlFor="exampleFormControlTextarea1" className="form-label" hidden>Text to preprocess:</label>
+                <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
                 <textarea className="form-control" defaultValue={defaultText} onChange={onChange} rows="15" id="proc" ></textarea>
+                <div id="editor" hidden />
+                <div id="output" hidden />
             </>
         )
     }
 
     // Only display the Strudel REPL
-    if (songVisual == "repl") {
+    else if (songVisual == "repl") {
         return (
             <>
                 <TextVisualOptions showInput={showInput} showRepl={showRepl} hideAll={hideAll} />
-                <label htmlFor="exampleFormControlTextarea1" className="form-label" hidden>Text to preprocess:</label>
+                <label htmlFor="exampleFormControlTextarea1" hidden className="form-label">Text to preprocess:</label>
                 <textarea className="form-control" defaultValue={defaultText} onChange={onChange} hidden rows="15" id="proc" ></textarea>
+                <div id="editor"/>
+                <div id="output" />
             </>
         )
     }
-    if (songVisual == "hideAll")
+
+    // Hide both the input & Strudel REPL
+    else if (songVisual == "hideAll")
     {
         return (
-            <TextVisualOptions showInput={showInput} showRepl={showRepl} hideAll={hideAll} />
+            <>
+                <TextVisualOptions showInput={showInput} showRepl={showRepl} hideAll={hideAll} />
+                <label htmlFor="exampleFormControlTextarea1" hidden className="form-label">Text to preprocess:</label>
+                <textarea className="form-control" defaultValue={defaultText} onChange={onChange} hidden rows="15" id="proc" ></textarea>
+                <div id="editor" hidden/>
+                <div id="output" hidden />
+            </>
         )
     }
 }
