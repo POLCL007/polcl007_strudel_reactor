@@ -1,4 +1,4 @@
-function DJControls() {
+function DJControls({volumeValue, onVolumeChange}) {
     return (
         <>
             <div className="input-group mb-3">
@@ -7,7 +7,7 @@ function DJControls() {
             </div>
 
             <label>Volume</label>
-            <input type="range" id="volume" className="form-range" min="0" max="1" step="0.01"></input>
+            <input type="range" id="volume" className="form-range" min="0" max="1" step="0.01" defaultValue={volumeValue} onChange={onVolumeChange}></input>
 
             <div className="input-group">
                 <input type="checkbox" id="mute_bassline"></input>

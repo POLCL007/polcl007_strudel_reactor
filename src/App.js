@@ -12,6 +12,7 @@ import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import SongButtons from './components/SongButtons.js';
 import DJControls from './components/DJControls.js';
 import PreprocessTextInput from './components/PreprocessTextInput.js';
+import ProcessText from './utils/ProcessText.js';
 
 let globalEditor = null;
 
@@ -74,18 +75,28 @@ export default function StrudelDemo() {
     const hasRun = useRef(false);
 
     const playSong = (() => {
+        // Run processing using controls such as muting
+        let postProcessText = ProcessText({inputText: songText, volume: volume});
+
+        // Put changes controls make to effect
+        globalEditor.setCode(postProcessText);
         globalEditor.evaluate();
-        // run preprocessing here
-        setIsRunning(true);
+
+        setIsPlaying(true);
     })
 
     const stopSong = (() => {
         globalEditor.stop();
-        setIsRunning(false);
+        setIsPlaying(false);
     })
 
     const [songText, setSongText] = useState(stranger_tune)
-    const [isRunning, setIsRunning] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [volume, setVolume] = useState(0.5);
+
+    useEffect(() => {
+        if (isPlaying) playSong();
+    }, [volume])
 
 useEffect(() => {
     if (!hasRun.current) {
@@ -123,14 +134,6 @@ useEffect(() => {
         //SetupButtons()
         //Proc()
     }
-    globalEditor.setCode(songText);
-
-    // Ensure the global editor updates if input changed mid play
-    if (isRunning)
-    {
-        globalEditor.stop();
-        globalEditor.evaluate();
-    }
 }, [songText]);
 
 
@@ -152,7 +155,7 @@ return (
                         <div id="output" />
                     </div>
                     <div className="col-md-4">
-                        <DJControls />
+                        <DJControls volume={volume} onVolumeChange={(e) => setVolume(e.target.value)} />
                     </div>
                 </div>
             </div>
