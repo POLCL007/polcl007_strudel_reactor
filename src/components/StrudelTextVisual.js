@@ -14,7 +14,6 @@ function StrudelTextVisual({ defaultText, onChange })
         return (
             <>
                 <TextVisualOptions showInput={showInput} showRepl={showRepl} hideAll={hideAll} />
-                <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
                 <textarea className="form-control" defaultValue={defaultText} onChange={onChange} rows="15" id="proc" ></textarea>
                 <div id="editor" hidden />
                 <div id="output" hidden />
@@ -27,7 +26,6 @@ function StrudelTextVisual({ defaultText, onChange })
         return (
             <>
                 <TextVisualOptions showInput={showInput} showRepl={showRepl} hideAll={hideAll} />
-                <label htmlFor="exampleFormControlTextarea1" hidden className="form-label">Text to preprocess:</label>
                 <textarea className="form-control" defaultValue={defaultText} onChange={onChange} hidden rows="15" id="proc" ></textarea>
                 <div id="editor"/>
                 <div id="output" />
@@ -41,7 +39,6 @@ function StrudelTextVisual({ defaultText, onChange })
         return (
             <>
                 <TextVisualOptions showInput={showInput} showRepl={showRepl} hideAll={hideAll} />
-                <label htmlFor="exampleFormControlTextarea1" hidden className="form-label">Text to preprocess:</label>
                 <textarea className="form-control" defaultValue={defaultText} onChange={onChange} hidden rows="15" id="proc" ></textarea>
                 <div id="editor" hidden/>
                 <div id="output" hidden />
