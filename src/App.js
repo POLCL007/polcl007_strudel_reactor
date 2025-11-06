@@ -13,6 +13,7 @@ import SongButtons from './components/SongButtons.js';
 import DJControls from './components/DJControls.js';
 import StrudelTextVisual from './components/StrudelTextVisual.js';
 import ProcessText from './utils/ProcessText.js';
+import PostProcessVerify from './utils/PostProcessVerify';
 
 let globalEditor = null;
 
@@ -28,12 +29,32 @@ export default function StrudelDemo() {
     const hasRun = useRef(false);
 
     const playSong = (() => {
+        if (songText == null)
+        {
+
+        }
+
         // Run processing using controls such as muting
-        let postProcessText = ProcessText({inputText: songText, volume: volume});
+        let postProcessText = ProcessText({ inputText: songText, volume: volume });
+
+        // Check processed text is usable
+        let postProcessResult = PostProcessVerify(postProcessText);
+        if (postProcessResult != "Success")
+        {
+            alert(postProcessResult);
+            return;
+        }
 
         // Put changes controls make to effect
         globalEditor.setCode(postProcessText);
-        globalEditor.evaluate();
+
+
+        try {
+            globalEditor.evaluate();
+        }
+        catch (error) {
+            alert("The input song is invalid"); return;
+        }
 
         setIsPlaying(true);
     })
@@ -84,8 +105,6 @@ useEffect(() => {
             });
             
         document.getElementById('proc').value = stranger_tune
-        //SetupButtons()
-        //Proc()
     }
 }, [songText]);
 
@@ -102,16 +121,15 @@ return (
                     </div>
                 </div>
 
-                <div className="row p-4" style={{ backgroundColor: "lightgray" }}>
+                <div className="row p-4" style={{ backgroundColor: "white" }}>
                     <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-                        <SongButtons onPlay={playSong} onStop={stopSong} />
+                        <SongButtons onPlay={playSong} onStop={stopSong} isPlaying={isPlaying} />
                     </div>
                 </div>
 
-                <div className="row p-4">
+                <div className="p-4 p-5" style={{backgroundColor: 'darkgray'}}>
                     <DJControls volume={volume} onVolumeChange={(e) => setVolume(e.target.value)} />
                 </div>
-
             </div>
             <canvas id="roll"></canvas>
         </main >

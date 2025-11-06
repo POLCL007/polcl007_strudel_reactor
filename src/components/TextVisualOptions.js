@@ -4,9 +4,9 @@ function StrudelTextVisual({ showInput, showRepl, hideAll }) {
 
     return (
         <>
-            <button onClick={showInput}>Show input</button>
-            <button onClick={showRepl}>Show REPL</button>
-            <button onClick={hideAll}>Hide input & REPL</button>
+            <button className="btn btn-secondary" style={{border: "1px solid black"}} onClick={showInput}>Show input</button>
+            <button className="btn btn-secondary" style={{ border: "1px solid black"}} onClick={showRepl}>Show REPL</button>
+            <button className="btn btn-secondary" style={{ border: "1px solid black" }} onClick={hideAll}>Hide input & REPL</button>
         </>
     )
 }
