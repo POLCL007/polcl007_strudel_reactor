@@ -13,7 +13,7 @@ import SongButtons from './components/SongButtons.js';
 import DJControls from './components/DJControls.js';
 import StrudelTextVisual from './components/StrudelTextVisual.js';
 import ProcessText from './utils/ProcessText.js';
-import PostProcessVerify from './utils/PostProcessVerify';
+import PostProcessResult from './utils/PostProcessResult';
 
 let globalEditor = null;
 
@@ -38,7 +38,7 @@ export default function StrudelDemo() {
         let postProcessText = ProcessText({ inputText: songText, volume: volume });
 
         // Check processed text is usable
-        let postProcessResult = PostProcessVerify(postProcessText);
+        let postProcessResult = PostProcessResult(postProcessText);
         if (postProcessResult != "Success")
         {
             alert(postProcessResult);
@@ -47,14 +47,6 @@ export default function StrudelDemo() {
 
         // Put changes controls make to effect
         globalEditor.setCode(postProcessText);
-
-
-        try {
-            globalEditor.evaluate();
-        }
-        catch (error) {
-            alert("The input song is invalid"); return;
-        }
 
         setIsPlaying(true);
     })
@@ -127,7 +119,7 @@ return (
                     </div>
                 </div>
 
-                <div className="p-4 p-5" style={{backgroundColor: 'darkgray'}}>
+                <div className="row p-4 p-5" style={{backgroundColor: 'darkgray'}}>
                     <DJControls volume={volume} onVolumeChange={(e) => setVolume(e.target.value)} />
                 </div>
             </div>

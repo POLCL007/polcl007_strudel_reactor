@@ -5,45 +5,32 @@ function StrudelTextVisual({ defaultText, onChange })
 {
     const [songVisual, setSongVisual] = useState("input")
 
+    const [hideInput, setHideInput] = useState(false);
+    const [hideRepl, setHideRepl] = useState(false);
+
     const showInput = ((e) => setSongVisual("input"));
     const showRepl = ((e) => setSongVisual("repl"));
     const hideAll = ((e) => setSongVisual("hideAll"));
 
-    // Only display the text input
-    if (songVisual == "input") {
-        return (
-            <>
-                <TextVisualOptions showInput={showInput} showRepl={showRepl} hideAll={hideAll} />
-                <textarea className="form-control" defaultValue={defaultText} onChange={onChange} rows="15" id="proc" ></textarea>
-                <div id="editor" hidden />
-                <div id="output" hidden />
-            </>
-        )
-    }
+    useEffect(() => {
+        // Set the visibility of input and repl based on selected visual
+        if (songVisual != "input") setHideInput(true);
+        else setHideInput(false);
 
-    // Only display the Strudel REPL
-    else if (songVisual == "repl") {
-        return (
-            <>
-                <TextVisualOptions showInput={showInput} showRepl={showRepl} hideAll={hideAll} />
-                <textarea className="form-control" defaultValue={defaultText} onChange={onChange} hidden rows="15" id="proc" ></textarea>
-                <div id="editor"/>
-                <div id="output" />
-            </>
-        )
-    }
+        if (songVisual != "repl") setHideRepl(true);
+        else setHideRepl(false);
 
-    // Hide both the input & Strudel REPL
-    else if (songVisual == "hideAll")
-    {
-        return (
-            <>
-                <TextVisualOptions showInput={showInput} showRepl={showRepl} hideAll={hideAll} />
-                <textarea className="form-control" defaultValue={defaultText} onChange={onChange} hidden rows="15" id="proc" ></textarea>
-                <div id="editor" hidden/>
-                <div id="output" hidden />
-            </>
-        )
-    }
+    }, [songVisual])
+
+    // Only display the selected to be visible visuals
+    return (
+        <>
+            <TextVisualOptions showInput={showInput} showRepl={showRepl} hideAll={hideAll} />
+            <textarea className="form-control" defaultValue={defaultText}
+                onChange={onChange} rows="15" id="proc" hidden={hideInput} ></textarea>
+            <div id="editor" hidden={hideRepl} />
+            <div id="output" hidden={hideRepl} />
+        </>
+    )
 }
 export default StrudelTextVisual;

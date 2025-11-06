@@ -5,7 +5,7 @@ function InstrumentControls({ instrumentName })
     const muteBtnId = `mute_${instrumentName}`;
 
     return (
-        <div className="m-2 controlsBlock">
+        <div className="m-2 pt-2 controlsBlock">
             <h3>{instrumentName} Controls</h3>
             <div className="input-group" style={{justifyContent: 'center'}}>
                 <input className="m-2" type="checkbox" id={muteBtnId}></input>

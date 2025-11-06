@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 function StrudelTextVisual({ showInput, showRepl, hideAll }) {
 
     return (
