@@ -70,7 +70,8 @@ stack(
   .struct(pick(drum_structure, pattern)),
 
   s("sh").struct("[x!3 ~!2 x!10 ~]")
-  .postgain(0.5).lpf(7000)
+  .postgain(0.5)
+  .lpf(7000)
   .bank("RolandTR808")
   .speed(0.8).jux(rev).room(sine.range(0.1,0.4)).gain(0.6),
 
@@ -96,7 +97,7 @@ stack(
   .speed(0.5)
   .rarely(jux(rev)),
 )
-.gain({VOLUME})
+.gain({1)
 
 //Remixed and reproduced from Algorave Dave's code found here: https://www.youtube.com/watch?v=ZCcpWzhekEY
 // all(x => x.gain(mouseX.range(0,1)))

@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\components\\djcontrols.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\djcontrols.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\components\\instrumentcontrols.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\instrumentcontrols.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\components\\preprocesstextinput.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\preprocesstextinput.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\components\\songbuttons.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\songbuttons.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\components\\djcontrols.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\djcontrols.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\camer\\onedrive\\documents\\github\\polcl007_strudel_reactor\\src\\tunes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -42,34 +46,61 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.js",
+              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\App.js",
+              "RelativeDocumentMoniker": "src\\App.js",
+              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\App.js",
+              "RelativeToolTip": "src\\App.js",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAAwE0AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-28T05:29:03.876Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PreprocessTextInput.js",
+              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\components\\PreprocessTextInput.js",
+              "RelativeDocumentMoniker": "src\\components\\PreprocessTextInput.js",
+              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\components\\PreprocessTextInput.js",
+              "RelativeToolTip": "src\\components\\PreprocessTextInput.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-04T13:39:34.774Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "InstrumentControls.js",
-              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\components\\InstrumentControls.js",
-              "RelativeDocumentMoniker": "src\\components\\InstrumentControls.js",
-              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\components\\InstrumentControls.js",
-              "RelativeToolTip": "src\\components\\InstrumentControls.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-03T05:30:55.465Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "DJControls.js",
               "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\components\\DJControls.js",
               "RelativeDocumentMoniker": "src\\components\\DJControls.js",
               "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\components\\DJControls.js",
               "RelativeToolTip": "src\\components\\DJControls.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-04T12:27:06.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SongButtons.js",
+              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\components\\SongButtons.js",
+              "RelativeDocumentMoniker": "src\\components\\SongButtons.js",
+              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\components\\SongButtons.js",
+              "RelativeToolTip": "src\\components\\SongButtons.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-11-03T05:23:38.837Z",
               "EditorCaption": ""
@@ -77,6 +108,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "tunes.js",
+              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\tunes.js",
+              "RelativeDocumentMoniker": "src\\tunes.js",
+              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\tunes.js",
+              "RelativeToolTip": "src\\tunes.js",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-28T07:48:23.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "console-monkey-patch.js",
               "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\console-monkey-patch.js",
               "RelativeDocumentMoniker": "src\\console-monkey-patch.js",
@@ -89,7 +133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "index.js",
               "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\index.js",
               "RelativeDocumentMoniker": "src\\index.js",
@@ -101,20 +145,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "App.js",
-              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\App.js",
-              "RelativeDocumentMoniker": "src\\App.js",
-              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\App.js",
-              "RelativeToolTip": "src\\App.js",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAIwHsAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-10-28T05:29:03.876Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "setupTests.js",
               "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\setupTests.js",
               "RelativeDocumentMoniker": "src\\setupTests.js",
@@ -122,25 +153,11 @@
               "RelativeToolTip": "src\\setupTests.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-10-28T07:48:37.859Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-28T07:48:37.859Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "tunes.js",
-              "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\tunes.js",
-              "RelativeDocumentMoniker": "src\\tunes.js",
-              "ToolTip": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\tunes.js",
-              "RelativeToolTip": "src\\tunes.js",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-10-28T07:48:23.494Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "reportWebVitals.js",
               "DocumentMoniker": "C:\\Users\\Camer\\OneDrive\\Documents\\GitHub\\polcl007_strudel_reactor\\src\\reportWebVitals.js",
               "RelativeDocumentMoniker": "src\\reportWebVitals.js",

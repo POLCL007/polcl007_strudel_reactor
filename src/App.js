@@ -12,7 +12,7 @@ import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import SongButtons from './components/SongButtons.js';
 import DJControls from './components/DJControls.js';
 import StrudelTextVisual from './components/StrudelTextVisual.js';
-import ProcessText from './utils/ProcessText.js';
+import StrudelToJson from './utils/StrudelToJson.js';
 import PostProcessResult from './utils/PostProcessResult';
 
 let globalEditor = null;
@@ -29,13 +29,9 @@ export default function StrudelDemo() {
     const hasRun = useRef(false);
 
     const playSong = (() => {
-        if (songText == null)
-        {
-
-        }
 
         // Run processing using controls such as muting
-        let postProcessText = ProcessText({ inputText: songText, volume: volume });
+        let postProcessText = StrudelToJson({ inputText: songText, volume: volume });
 
         // Check processed text is usable
         let postProcessResult = PostProcessResult(postProcessText);
@@ -49,6 +45,7 @@ export default function StrudelDemo() {
         globalEditor.setCode(postProcessText);
 
         setIsPlaying(true);
+        globalEditor.evaluate();
     })
 
     const stopSong = (() => {
