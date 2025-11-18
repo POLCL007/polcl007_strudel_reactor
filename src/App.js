@@ -34,7 +34,11 @@ export default function StrudelDemo() {
         let songObj = StrudelToObject({ inputText: songText });
         console.log(songObj);
 
-        let strudel = ObjectToStrudel({ songObj: songObj });
+        let songStrudel = ObjectToStrudel({ songObj: songObj });
+
+        globalEditor.setCode(songStrudel);
+        setIsPlaying(true);
+        globalEditor.evaluate();
 
         // Check processed text is usable
         /*
