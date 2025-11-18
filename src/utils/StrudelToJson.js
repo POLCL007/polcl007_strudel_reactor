@@ -97,11 +97,8 @@ function buildInstrument(instrumentData)
     let layersContent = "";
     if (isStack)
     {
-        let decompose = decomposeInstrument(body);
-
-        console.log("Pre layers: " + decompose[0]);
-        console.log("Layers: " + decompose[1]);
-        console.log("Post layers: " + decompose[2]);
+        // Return the stack as an object
+        let stackDecomp = decomposeStack(body);
 
         //let stackNonLayers = body.replace(layersContent, "");
         //console.log(stackNonLayers);
@@ -130,12 +127,12 @@ function buildInstrument(instrumentData)
     return instrumentObj;
 }
 
-// Returns an array of the input string, containing instrument type and its layers
-function decomposeInstrument(body)
+
+function decomposeStack(stack)
 {
     // Find where the opening bracket of the stack is
     let openerIndex = 0;
-    while (openerIndex < body.length && body[openerIndex] != "(") {
+    while (openerIndex < stack.length && stack[openerIndex] != "(") {
         openerIndex++;
     }
 
@@ -143,40 +140,36 @@ function decomposeInstrument(body)
     let depth = 0;
 
     // Search until we reach the closing bracket of the stack, where depth is 0
-    for (let i = openerIndex; i < body.length; i++) {
-        if (body[i] == "(") depth++;
-        if (body[i] == ")") depth--;
+    for (let i = openerIndex; i < stack.length; i++) {
+        if (stack[i] == "(") depth++;
+        if (stack[i] == ")") depth--;
         if (depth == 0) {
             closerIndex = i;
             break;
         }
     }
 
-    // Don't include stack's open and close brackets in the layers
-    openerIndex++;
-    closerIndex--;
+    const stackOpener = stack.slice(0, openerIndex);
+    const stackLayers = stack.slice(openerIndex+1, closerIndex-1);
+    const stackMods = stack.slice(closerIndex+1);
+    //console.log("Stack open: " + stackOpener);
+    //console.log("Stack layers: " + stackLayers);
+    //console.log("Stack mods: " + stackMods);
 
-    let splitArray = [];
-    // Section before the layers
-    splitArray.push(body.slice(0, openerIndex-1));
+    let layerObjs = extractLayers(stackLayers);
+    console.log("Ex")
+    console.log(layerObjs);
 
-    // Section containing layers
-    // Process the layers
-    const layers = body.slice(openerIndex, closerIndex);
-    splitArray.push(body.slice(openerIndex, closerIndex));
-    extractLayers(layers);
+    let modsObj = extractModifiers(stackMods);
 
-    // Section containing modifiers of instrument unrelated to layers
-    let postMods = body.slice(closerIndex, -1);
-    postMods = extractModifiers(postMods);
-    splitArray.push(postMods);
-  
-    return splitArray;
+
+    //console.log(layerData);
+    return "";
 }
 
 function extractModifiers(modifierStr)
 {
-    let modifierRegex = /\.(\w+)\(([^)]*)/gm;
+    let modifierRegex = /\.(\w+)\(([^\)]*)/gm;
 
     let modifiers = {};
     const allMatches = modifierStr.matchAll(modifierRegex);
@@ -186,11 +179,12 @@ function extractModifiers(modifierStr)
 
         modifiers[match[1]] = match[2];
     }
-
-    console.log("- modifiers obj below -");
-    console.log(modifiers);
-
     return modifiers;
+}
+
+function getLayerData(layer)
+{
+    return "";
 }
 
 function extractLayers(layersStr)
@@ -207,17 +201,38 @@ function extractLayers(layersStr)
         if (layersStr[i] == "(") depth++;
         if (layersStr[i] == ")") depth--;
         // Comma between layers instead of commas instead a layer
-        if (depth == 0 && layersStr[i] == ",") {
+        if (depth == 0 && layersStr[i] == "," || i == layersStr.length-1) {
             closerIndex = i;
 
             let layer = layersStr.slice(openerIndex, closerIndex).trim();
             // Increase openerIndex by 1 so the comma seperator isn't included
             openerIndex = closerIndex + 1;
             layers.push(layer);
-            console.log(layer);
         }
     }
 
+    let layerObjs = []
     // Create objects from each layer
-    console.log(layers);
+    for (const layer of layers)
+    {
+        // This is the contents of the note or the s layer part of an instrument/stack
+        const layerDataStr = getLayerData(layer);
+        console.log(layerDataStr);
+
+        let modifierText = layer.replace(layerDataStr, "");
+
+        let modObj = extractModifiers(modifierText);
+
+        let layerObj = {
+            layerData: layerDataStr[0],
+            modifiers: modObj
+        };
+
+        layerObjs.push(layerObj);
+    }
+
+    console.log(layerObjs);
+
+    return layerObjs;
+    //console.log(layers);
 }
