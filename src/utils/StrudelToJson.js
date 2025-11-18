@@ -184,7 +184,20 @@ function extractModifiers(modifierStr)
 
 function getLayerData(layer)
 {
-    return "";
+    let depth = 0;
+    let dotIndex = 0;
+
+    // Find where the layerData ends, with a "." outside of brackets
+    for (let i = 0; i < layer.length; i++) {
+        if (layer[i] == "(") depth++;
+        if (layer[i] == ")") depth--;
+        if (depth == 0 && layer[i] == ".") {
+            dotIndex = i;
+            break;
+        }
+    }
+
+    return layer.slice(0, dotIndex);
 }
 
 function extractLayers(layersStr)
@@ -224,7 +237,7 @@ function extractLayers(layersStr)
         let modObj = extractModifiers(modifierText);
 
         let layerObj = {
-            layerData: layerDataStr[0],
+            layerData: layerDataStr,
             modifiers: modObj
         };
 
