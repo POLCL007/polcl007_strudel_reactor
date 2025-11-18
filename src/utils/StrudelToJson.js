@@ -158,7 +158,7 @@ function decomposeInstrument(body)
 
     let splitArray = [];
     // Section before the layers
-    splitArray.push(body.slice(0, openerIndex));
+    splitArray.push(body.slice(0, openerIndex-1));
 
     // Section containing layers
     splitArray.push(body.slice(openerIndex, closerIndex));
@@ -176,7 +176,21 @@ function decomposeInstrument(body)
 
 function extractModifiers(modifierStr)
 {
-    return "";
+    let modifierRegex = /\.(\w+)\(([^)]*)/gm;
+
+    let modifiers = {};
+    const allMatches = modifierStr.matchAll(modifierRegex);
+
+    // Set field of each modifier to its value
+    for (const match of allMatches) {
+
+        modifiers[match[1]] = match[2];
+    }
+
+    console.log("- modifiers obj below -");
+    console.log(modifiers);
+
+    return modifiers;
 }
 
 function extractLayers(layersStr)
