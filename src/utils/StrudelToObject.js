@@ -25,9 +25,7 @@ export default function StrudelToObject({ inputText })
         instruments: instrumentObjs
     };
 
-    console.log(strudelObj);
-
-    return inputText;
+    return strudelObj;
 }
 
 function buildInstrument(instrumentData)

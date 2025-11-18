@@ -13,6 +13,7 @@ import SongButtons from './components/SongButtons.js';
 import DJControls from './components/DJControls.js';
 import StrudelTextVisual from './components/StrudelTextVisual.js';
 import StrudelToObject from './utils/StrudelToObject.js';
+import ObjectToStrudel from './utils/ObjectToStrudel.js';
 
 let globalEditor = null;
 
@@ -30,7 +31,10 @@ export default function StrudelDemo() {
     const playSong = (() => {
 
         // Run processing using controls such as muting
-        let postProcessText = StrudelToObject({ inputText: songText });
+        let songObj = StrudelToObject({ inputText: songText });
+        console.log(songObj);
+
+        let strudel = ObjectToStrudel({ songObj: songObj });
 
         // Check processed text is usable
         /*
@@ -42,11 +46,13 @@ export default function StrudelDemo() {
         }
         */
 
+        /*
         // Put changes controls make to effect
-        globalEditor.setCode(postProcessText);
+        globalEditor.setCode(songStrudel);
 
         setIsPlaying(true);
         globalEditor.evaluate();
+        */
     })
 
     const stopSong = (() => {
