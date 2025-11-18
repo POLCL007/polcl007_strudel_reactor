@@ -90,11 +90,16 @@ function buildInstrument(instrumentData)
 
     // Determines the instrument type
     const isStack = body.includes("stack(");
+
     let layersContent = "";
     if (isStack)
     {
         // Get all the layers as 1 string
-        layersContent = extractStackContent(body);
+        layersContent = getStackLayersStr(body);
+
+        let stackNonLayers = body.replace(layersContent, "");
+        console.log(stackNonLayers);
+        console.log(layersContent);
     }
     else
     {
@@ -102,11 +107,13 @@ function buildInstrument(instrumentData)
         // Keep the "..." as the layersContent variable
     }
 
+    // Turn the layers into individual objects with "layerData" and modifiers
+    let layerObjs = []
+
     let instrumentType = "instrument";
     if (isStack) instrumentType = "stack";
 
-    // Turn the layers into individual objects with "layerData" and modifiers
-    let layerObjs = []
+    
 
     const instrumentObj =
     {
@@ -117,9 +124,33 @@ function buildInstrument(instrumentData)
     return instrumentObj;
 }
 
-function buildInstrumentlayers() { }
-
-function extractStackContent(body)
+function getStackLayersStr(body)
 {
-    return "";
+    // Find where the opening bracket of the stack is
+    let openerIndex = 0;
+    while (openerIndex < body.length && body[openerIndex] != "(") {
+        openerIndex++;
+    }
+
+    let closerIndex = 0;
+    let depth = 0;
+
+    // Search until we reach the closing bracket of the stack, where depth is 0
+    for (let i = openerIndex; i < body.length; i++) {
+        if (body[i] == "(") depth++;
+        if (body[i] == ")") depth--;
+        if (depth == 0) {
+            closerIndex = i;
+            break;
+        }
+    }
+
+    // Don't include stack's open and close brackets in the layers
+    openerIndex++;
+    closerIndex--;
+
+    let stackContent = body.slice(openerIndex, closerIndex).trim();
+    return stackContent;
 }
+
+function getModifiers() { }
