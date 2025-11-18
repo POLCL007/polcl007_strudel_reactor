@@ -2,7 +2,7 @@ export default function StrudelToJson({inputText, volume})
 {
     // Set gain of all instruments
     // To be removed after function completed
-    inputText = inputText.replaceAll("{VOLUME}", volume);
+    //inputText = inputText.replaceAll("{VOLUME}", volume);
 
     // Matches with instruments
     // Look for [instrument name]:, and then any number of white spaces
@@ -15,9 +15,12 @@ export default function StrudelToJson({inputText, volume})
     let global = inputText;
 
     let instrumentObjs = [];
-
     instrumentMatches.forEach(instrumentData => {
-        //console.log(`Full instrument content: ${instrumentData[0]}`)
+        if (instrumentData[0].includes("stack"))
+        {
+            console.log(`Full instrument content: ${instrumentData[0]}`);
+        }
+        
         //console.log(`Name: ${instrumentData[1]}`)
         //console.log(`Body content: ${instrumentData[2]}`)
 
@@ -94,12 +97,15 @@ function buildInstrument(instrumentData)
     let layersContent = "";
     if (isStack)
     {
-        // Get all the layers as 1 string
-        layersContent = getStackLayersStr(body);
+        let decompose = decomposeInstrument(body);
 
-        let stackNonLayers = body.replace(layersContent, "");
-        console.log(stackNonLayers);
-        console.log(layersContent);
+        console.log("Pre layers: " + decompose[0]);
+        console.log("Layers: " + decompose[1]);
+        console.log("Post layers: " + decompose[2]);
+
+        //let stackNonLayers = body.replace(layersContent, "");
+        //console.log(stackNonLayers);
+        //console.log(layersContent);
     }
     else
     {
@@ -108,7 +114,7 @@ function buildInstrument(instrumentData)
     }
 
     // Turn the layers into individual objects with "layerData" and modifiers
-    let layerObjs = []
+    let layerObjs = [];
 
     let instrumentType = "instrument";
     if (isStack) instrumentType = "stack";
@@ -120,11 +126,12 @@ function buildInstrument(instrumentData)
         instrumentName: instrumentData[1],
         type: instrumentType,
         typeLayers: layerObjs
-    }
+    };
     return instrumentObj;
 }
 
-function getStackLayersStr(body)
+// Returns an array of the input string, containing instrument type and its layers
+function decomposeInstrument(body)
 {
     // Find where the opening bracket of the stack is
     let openerIndex = 0;
@@ -149,8 +156,30 @@ function getStackLayersStr(body)
     openerIndex++;
     closerIndex--;
 
-    let stackContent = body.slice(openerIndex, closerIndex).trim();
-    return stackContent;
+    let splitArray = [];
+    // Section before the layers
+    splitArray.push(body.slice(0, openerIndex));
+
+    // Section containing layers
+    splitArray.push(body.slice(openerIndex, closerIndex));
+
+    // Section containing modifiers of instrument unrelated to layers
+    let postLayers = body.slice(closerIndex, -1);
+
+    // The post layer is the end of an instrument, and comments or globals may be after this
+    // so dont keep these
+    postLayers = extractModifiers(postLayers);
+    splitArray.push(postLayers);
+  
+    return splitArray;
 }
 
-function getModifiers() { }
+function extractModifiers(modifierStr)
+{
+    return "";
+}
+
+function extractLayers(layersStr)
+{
+    return "";
+}
