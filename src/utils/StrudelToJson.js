@@ -16,19 +16,14 @@ export default function StrudelToJson({inputText, volume})
 
     let instrumentObjs = [];
     instrumentMatches.forEach(instrumentData => {
-        if (instrumentData[0].includes("stack"))
-        {
-            console.log(`Full instrument content: ${instrumentData[0]}`);
-        }
-        
-        //console.log(`Name: ${instrumentData[1]}`)
-        //console.log(`Body content: ${instrumentData[2]}`)
-
         // Remove all instruments from the text, keeping only globals
         global = global.replace(instrumentData[0], "").trim();
 
-        let instrument = buildInstrument(instrumentData);
-        instrumentObjs.push(instrument);
+        let instrumentObj = buildInstrument(instrumentData);
+        console.log("Original instrument: " + instrumentData[0]);
+        console.log(instrumentObj);
+
+        instrumentObjs.push(instrumentObj);
     })  
 
     const strudelObj = {
@@ -94,37 +89,27 @@ function buildInstrument(instrumentData)
     // Determines the instrument type
     const isStack = body.includes("stack(");
 
-    let layersContent = "";
     if (isStack)
     {
         // Return the stack as an object
         let stackDecomp = decomposeStack(body);
 
-        //let stackNonLayers = body.replace(layersContent, "");
-        //console.log(stackNonLayers);
-        //console.log(layersContent);
+        // Construct the object representation of the stack instrument
+        const instrumentObj =
+        {
+            instrumentName: name,
+            type: "stack",
+            typeLayers: stackDecomp["typeLayers"],
+            modifiers: stackDecomp["modifiers"]
+        };
+
+        return instrumentObj;
     }
     else
     {
         // Extract the note(....) of instrument
         // Keep the "..." as the layersContent variable
     }
-
-    // Turn the layers into individual objects with "layerData" and modifiers
-    let layerObjs = [];
-
-    let instrumentType = "instrument";
-    if (isStack) instrumentType = "stack";
-
-    
-
-    const instrumentObj =
-    {
-        instrumentName: instrumentData[1],
-        type: instrumentType,
-        typeLayers: layerObjs
-    };
-    return instrumentObj;
 }
 
 
@@ -157,16 +142,12 @@ function decomposeStack(stack)
     //console.log("Stack mods: " + stackMods);
 
     let layerObjs = extractLayers(stackLayers);
-    console.log("Ex")
-    console.log(layerObjs);
-
     let modsObj = extractModifiers(stackMods);
-    console.log("mods");
-    console.log(modsObj);
 
-
-    //console.log(layerData);
-    return "";
+    return {
+        typeLayers: layerObjs,
+        modifiers: modsObj
+    }
 }
 
 function extractModifiers(modifierStr)
@@ -187,8 +168,6 @@ function extractModifiers(modifierStr)
 
         modifiers[modName] = modVal;
     }
-    console.log(modifierStr);
-    console.log(modifiers);
     return modifiers;
 }
 
