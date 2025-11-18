@@ -171,17 +171,24 @@ function decomposeStack(stack)
 
 function extractModifiers(modifierStr)
 {
-    let modifierRegex = /\.(\w+)\(([^.]*)\)/gm;
+    // Allows having 1 set of nested parentheses or no nested parentheses
+    // without cutting out the nested parantheses if in the string
+    let modifierRegex = /\.(\w+)\(((?:[^()"]+|"[^"]*"|\((?:[^()"]+|"[^"]*"|\([^()]*\))*\))*)\)/gm;
 
     let modifiers = {};
+    // Get all matches, splitting on dots
     const allMatches = modifierStr.matchAll(modifierRegex);
 
     // Set field of each modifier to its value
-    for (const match of allMatches) {
+    for (const match of allMatches)
+    {
+        const modName = match[1];
+        const modVal = match[2];
 
-        console.log(match[2]);
-        modifiers[match[1]] = match[2];
+        modifiers[modName] = modVal;
     }
+    console.log(modifierStr);
+    console.log(modifiers);
     return modifiers;
 }
 
@@ -238,7 +245,6 @@ function extractLayers(layersStr)
         let modifierText = layer.replace(layerDataStr, "");
 
         let modObj = extractModifiers(modifierText);
-        console.log(modObj);
 
         let layerObj = {
             layerData: layerDataStr,
