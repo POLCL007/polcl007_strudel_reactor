@@ -1,6 +1,6 @@
 import InstrumentControls from './InstrumentControls.js';
 
-function DJControls({ volumeValue, onVolumeChange }) {
+function DJControls({ SongObj, onVolumeChange }) {
     return (
         <>
             <div className="row mb-4 p-3">
@@ -22,6 +22,7 @@ function DJControls({ volumeValue, onVolumeChange }) {
             </div>
 
             <div className="row">
+
                 <div className="col-4">
                     <InstrumentControls instrumentName="bassline"/>
                 </div>

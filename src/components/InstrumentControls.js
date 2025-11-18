@@ -1,7 +1,9 @@
 import '../utils/InstrumentControlsStyle.css';
 
-function InstrumentControls({ instrumentName })
+function InstrumentControls({ instrumentObj })
 {
+    const instrumentName = instrumentObj.name;
+
     const muteBtnId = `mute_${instrumentName}`;
 
     return (

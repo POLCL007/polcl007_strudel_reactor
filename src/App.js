@@ -30,6 +30,12 @@ export default function StrudelDemo() {
 
     const playSong = (() => {
 
+        if (songText == null)
+        {
+            alert("You can't play a song with no text");
+            return;
+        }
+
         // Run processing using controls such as muting
         let songObj = StrudelToObject({ inputText: songText });
         console.log(songObj);
@@ -39,24 +45,6 @@ export default function StrudelDemo() {
         globalEditor.setCode(songStrudel);
         setIsPlaying(true);
         globalEditor.evaluate();
-
-        // Check processed text is usable
-        /*
-        let postProcessResult = PostProcessResult(postProcessText);
-        if (postProcessResult != "Success")
-        {
-            alert(postProcessResult);
-            return;
-        }
-        */
-
-        /*
-        // Put changes controls make to effect
-        globalEditor.setCode(songStrudel);
-
-        setIsPlaying(true);
-        globalEditor.evaluate();
-        */
     })
 
     const stopSong = (() => {
@@ -64,7 +52,31 @@ export default function StrudelDemo() {
         setIsPlaying(false);
     })
 
+
+    
+    const adjustSong = (name, layerData, mod, value) => {
+        let newSongObj = songObj;
+
+        let changedInstrument;
+        for (const instrument of newSongObj["instruments"])
+        {
+            if (instrument["instrumentName"] == name)
+            {
+                changedInstrument = instrument;
+            }
+        }
+
+        if (changedInstrument == null)
+        {
+            alert("Attempted to edit instrument that doesn't exist");
+            return;
+        }
+
+        
+    };
+
     const [songText, setSongText] = useState(stranger_tune)
+    const [songObj, setSongObj] = useState({});
     const [isPlaying, setIsPlaying] = useState(false);
     const [volume, setVolume] = useState(0.5);
 
@@ -127,8 +139,14 @@ return (
                     </div>
                 </div>
 
-                <div className="row p-4 p-5" style={{backgroundColor: 'darkgray'}}>
-                    <DJControls volume={volume} onVolumeChange={(e) => setVolume(e.target.value)} />
+                <div className="row p-4 p-5" style={{ backgroundColor: 'darkgray' }}>
+                    
+
+                    <DJControls
+                        songObj={songObj}
+
+                        onVolumeChange={(e) => setVolume(e.target.value)}
+                    />
                 </div>
             </div>
             <canvas id="roll"></canvas>
