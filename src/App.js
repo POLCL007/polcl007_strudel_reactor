@@ -57,23 +57,59 @@ export default function StrudelDemo() {
     const adjustSong = (name, layerData, mod, value) => {
         let newSongObj = songObj;
 
+        // Run through all instruments
         let changedInstrument;
         for (const instrument of newSongObj["instruments"])
         {
+            // If instrument matches the target
             if (instrument["instrumentName"] == name)
             {
                 changedInstrument = instrument;
             }
         }
 
+        // If no matching instrument found
         if (changedInstrument == null)
         {
             alert("Attempted to edit instrument that doesn't exist");
             return;
         }
 
-        
-    };
+        let modSet;
+        // If the instrument uses stack 
+        if (changedInstrument["type"] == "stack") {
+            // if modification is for one of the layers
+            if (layerData != "") {
+                // Search for the layer that will be modified
+                for (const layer of changedInstrument["typeLayers"]) {
+                    if (layer["layerData"] == layerData) {
+                        modSet = layer["modifiers"];
+                    }
+                }
+            }
+            // The modification is for the stack itself
+            else {
+                modSet = changedInstrument["modifiers"];
+            }
+        }
+        else {
+            modSet = changedInstrument["typeLayers"]["modifiers"];
+        }
+        // The modification option doesn't exist
+        if (modSet[mod] == null)
+        {
+            alert("Attempted to make a modification that doesn't exist");
+            return;
+        }
+
+        // Make the modification
+        modifiedObjSet[mod] = value;
+
+        // Update state variables
+        setSongObj(newSongObj);
+        let newStrudel = ObjectToStrudel(newSongObj);
+        setSongText(newStrudel);
+    }
 
     const [songText, setSongText] = useState(stranger_tune)
     const [songObj, setSongObj] = useState({});
@@ -82,7 +118,7 @@ export default function StrudelDemo() {
 
     useEffect(() => {
         if (isPlaying) playSong();
-    }, [volume])
+    }, [songText, songObj]
 
 useEffect(() => {
     if (!hasRun.current) {
