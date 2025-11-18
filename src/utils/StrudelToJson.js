@@ -161,15 +161,15 @@ function decomposeInstrument(body)
     splitArray.push(body.slice(0, openerIndex-1));
 
     // Section containing layers
+    // Process the layers
+    const layers = body.slice(openerIndex, closerIndex);
     splitArray.push(body.slice(openerIndex, closerIndex));
+    extractLayers(layers);
 
     // Section containing modifiers of instrument unrelated to layers
-    let postLayers = body.slice(closerIndex, -1);
-
-    // The post layer is the end of an instrument, and comments or globals may be after this
-    // so dont keep these
-    postLayers = extractModifiers(postLayers);
-    splitArray.push(postLayers);
+    let postMods = body.slice(closerIndex, -1);
+    postMods = extractModifiers(postMods);
+    splitArray.push(postMods);
   
     return splitArray;
 }
@@ -195,5 +195,29 @@ function extractModifiers(modifierStr)
 
 function extractLayers(layersStr)
 {
-    return "";
+    let layers = []
+
+    let openerIndex = 0;
+    let closerIndex = 0;
+    let depth = 0;
+    layersStr = layersStr.trim();
+
+    // Search for each comma between layers
+    for (let i = 0; i < layersStr.length; i++) {
+        if (layersStr[i] == "(") depth++;
+        if (layersStr[i] == ")") depth--;
+        // Comma between layers instead of commas instead a layer
+        if (depth == 0 && layersStr[i] == ",") {
+            closerIndex = i;
+
+            let layer = layersStr.slice(openerIndex, closerIndex).trim();
+            // Increase openerIndex by 1 so the comma seperator isn't included
+            openerIndex = closerIndex + 1;
+            layers.push(layer);
+            console.log(layer);
+        }
+    }
+
+    // Create objects from each layer
+    console.log(layers);
 }
