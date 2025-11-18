@@ -10,20 +10,30 @@ export default function StrudelToJson({inputText, volume})
     let instrumentRegex = /^([a-zA-Z_][a-zA-Z0-9_]*):\s*([\s\S]*?)(?=^[a-zA-Z_][a-zA-Z0-9_]*:\s*|\Z)/gm;
 
     // Get a collection of all the matches/instruments
-    const instrumentMatches = [...inputText.matchAll(instrumentRegex)];
+    const instrumentMatches = inputText.matchAll(instrumentRegex);
 
-    let globals = inputText;
+    let global = inputText;
+
+    let instrumentObjs = [];
+
     instrumentMatches.forEach(instrumentData => {
         //console.log(`Full instrument content: ${instrumentData[0]}`)
         //console.log(`Name: ${instrumentData[1]}`)
         //console.log(`Body content: ${instrumentData[2]}`)
 
         // Remove all instruments from the text, keeping only globals
-        inputText.replace(instrumentData[0], "");
-        globals = globals.replace(instrumentData[0], "").trim();
-    })
+        global = global.replace(instrumentData[0], "").trim();
 
-    console.log("Globals: \n\n" + globals);
+        let instrument = buildInstrument(instrumentData);
+        instrumentObjs.push(instrument);
+    })  
+
+    const strudelObj = {
+        globals: global,
+        instruments: instrumentObjs
+    };
+
+    //console.log("Globals: \n\n" + global);
     return inputText;
 
 
@@ -70,4 +80,46 @@ export default function StrudelToJson({inputText, volume})
             }]
         }
     */
+}
+
+function buildInstrument(instrumentData)
+{
+    // Get the type data
+    const name = instrumentData[1];
+    const body = instrumentData[2];
+
+    // Determines the instrument type
+    const isStack = body.includes("stack(");
+    let layersContent = "";
+    if (isStack)
+    {
+        // Get all the layers as 1 string
+        layersContent = extractStackContent(body);
+    }
+    else
+    {
+        // Extract the note(....) of instrument
+        // Keep the "..." as the layersContent variable
+    }
+
+    let instrumentType = "instrument";
+    if (isStack) instrumentType = "stack";
+
+    // Turn the layers into individual objects with "layerData" and modifiers
+    let layerObjs = []
+
+    const instrumentObj =
+    {
+        instrumentName: instrumentData[1],
+        type: instrumentType,
+        typeLayers: layerObjs
+    }
+    return instrumentObj;
+}
+
+function buildInstrumentlayers() { }
+
+function extractStackContent(body)
+{
+    return "";
 }

@@ -13,7 +13,6 @@ import SongButtons from './components/SongButtons.js';
 import DJControls from './components/DJControls.js';
 import StrudelTextVisual from './components/StrudelTextVisual.js';
 import StrudelToJson from './utils/StrudelToJson.js';
-import PostProcessResult from './utils/PostProcessResult';
 
 let globalEditor = null;
 
@@ -34,12 +33,14 @@ export default function StrudelDemo() {
         let postProcessText = StrudelToJson({ inputText: songText, volume: volume });
 
         // Check processed text is usable
+        /*
         let postProcessResult = PostProcessResult(postProcessText);
         if (postProcessResult != "Success")
         {
             alert(postProcessResult);
             return;
         }
+        */
 
         // Put changes controls make to effect
         globalEditor.setCode(postProcessText);
