@@ -161,6 +161,8 @@ function decomposeStack(stack)
     console.log(layerObjs);
 
     let modsObj = extractModifiers(stackMods);
+    console.log("mods");
+    console.log(modsObj);
 
 
     //console.log(layerData);
@@ -169,7 +171,7 @@ function decomposeStack(stack)
 
 function extractModifiers(modifierStr)
 {
-    let modifierRegex = /\.(\w+)\(([^\)]*)/gm;
+    let modifierRegex = /\.(\w+)\(([^.]*)\)/gm;
 
     let modifiers = {};
     const allMatches = modifierStr.matchAll(modifierRegex);
@@ -177,6 +179,7 @@ function extractModifiers(modifierStr)
     // Set field of each modifier to its value
     for (const match of allMatches) {
 
+        console.log(match[2]);
         modifiers[match[1]] = match[2];
     }
     return modifiers;
@@ -230,11 +233,12 @@ function extractLayers(layersStr)
     {
         // This is the contents of the note or the s layer part of an instrument/stack
         const layerDataStr = getLayerData(layer);
-        console.log(layerDataStr);
 
+        // The text modifications on the layer of instrument
         let modifierText = layer.replace(layerDataStr, "");
 
         let modObj = extractModifiers(modifierText);
+        console.log(modObj);
 
         let layerObj = {
             layerData: layerDataStr,
@@ -244,8 +248,5 @@ function extractLayers(layersStr)
         layerObjs.push(layerObj);
     }
 
-    console.log(layerObjs);
-
     return layerObjs;
-    //console.log(layers);
 }
