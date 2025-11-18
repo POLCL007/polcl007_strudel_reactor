@@ -1,9 +1,5 @@
-export default function StrudelToJson({inputText, volume})
+export default function StrudelToObject({ inputText })
 {
-    // Set gain of all instruments
-    // To be removed after function completed
-    //inputText = inputText.replaceAll("{VOLUME}", volume);
-
     // Matches with instruments
     // Look for [instrument name]:, and then any number of white spaces
     // and grab all lines afterwards. The match ends when finding another instrument name or string ends
@@ -19,10 +15,8 @@ export default function StrudelToJson({inputText, volume})
         // Remove all instruments from the text, keeping only globals
         global = global.replace(instrumentData[0], "").trim();
 
+        // Build an object representing the instrument
         let instrumentObj = buildInstrument(instrumentData);
-        console.log("Original instrument: " + instrumentData[0]);
-        console.log(instrumentObj);
-
         instrumentObjs.push(instrumentObj);
     })  
 
@@ -31,53 +25,9 @@ export default function StrudelToJson({inputText, volume})
         instruments: instrumentObjs
     };
 
-    //console.log("Globals: \n\n" + global);
+    console.log(strudelObj);
+
     return inputText;
-
-
-    // Split between global and All Instruments
-    // Split All Instruments into individual instruments
-    // For each instrument, split each modifier into fields
-    /* Example Json structure
-        {
-            "globals": "setcps(140/60/4)",
-            "instruments": [
-            {
-                "instrumentName": "bassline",
-                "type": "instrument",
-                "typeLayers": [
-                {
-                    "layerData": "note(pick(basslines, bass))",
-                    "modifiers: [
-                    {
-                        "sound: "supersaw",
-                        "room": "0.4",
-                        "postgain": "pick(gain_patterns, pattern)"
-                    }
-                }]
-            },
-            {
-                "instrumentName": "drums",
-                "type": "stack",
-                "typeLayers": [
-                {
-                    "layerData": "s("tech:5")",
-                    "modifiers":
-                    {
-                        "postgain": "0.6",
-                    } 
-                },
-                {
-                    "layerData": "s("sh").struct("[x!3 ~!2 x!10 ~]")",
-                    "modifiers":
-                    {
-                       "postgain": "0.7",
-                       "lpf": "7000"
-                    }
-                }]
-            }]
-        }
-    */
 }
 
 function buildInstrument(instrumentData)
@@ -107,8 +57,18 @@ function buildInstrument(instrumentData)
     }
     else
     {
-        // Extract the note(....) of instrument
-        // Keep the "..." as the layersContent variable
+        // Extract the layer without the stack encapsulator as its a regular note
+        let noteDecomp = extractLayers(body)[0];
+
+        const instrumentObj =
+        {
+            instrumentName: name,
+            type: "instrument",
+            typeLayers: noteDecomp,
+            modifiers: ""
+        };
+
+        return instrumentObj;
     }
 }
 
@@ -134,12 +94,8 @@ function decomposeStack(stack)
         }
     }
 
-    const stackOpener = stack.slice(0, openerIndex);
     const stackLayers = stack.slice(openerIndex+1, closerIndex-1);
     const stackMods = stack.slice(closerIndex+1);
-    //console.log("Stack open: " + stackOpener);
-    //console.log("Stack layers: " + stackLayers);
-    //console.log("Stack mods: " + stackMods);
 
     let layerObjs = extractLayers(stackLayers);
     let modsObj = extractModifiers(stackMods);
@@ -180,6 +136,7 @@ function getLayerData(layer)
     for (let i = 0; i < layer.length; i++) {
         if (layer[i] == "(") depth++;
         if (layer[i] == ")") depth--;
+        // Reached the first "." outside of brackets, indicating a modifier
         if (depth == 0 && layer[i] == ".") {
             dotIndex = i;
             break;
@@ -196,7 +153,6 @@ function extractLayers(layersStr)
     let openerIndex = 0;
     let closerIndex = 0;
     let depth = 0;
-    layersStr = layersStr.trim();
 
     // Search for each comma between layers
     for (let i = 0; i < layersStr.length; i++) {
@@ -206,7 +162,7 @@ function extractLayers(layersStr)
         if (depth == 0 && layersStr[i] == "," || i == layersStr.length-1) {
             closerIndex = i;
 
-            let layer = layersStr.slice(openerIndex, closerIndex).trim();
+            let layer = layersStr.slice(openerIndex, closerIndex);
             // Increase openerIndex by 1 so the comma seperator isn't included
             openerIndex = closerIndex + 1;
             layers.push(layer);
@@ -223,6 +179,7 @@ function extractLayers(layersStr)
         // The text modifications on the layer of instrument
         let modifierText = layer.replace(layerDataStr, "");
 
+        // Object representing all modifiers for the layer
         let modObj = extractModifiers(modifierText);
 
         let layerObj = {
