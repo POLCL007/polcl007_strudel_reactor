@@ -77,6 +77,7 @@ export default function StrudelDemo() {
         setSongText(newSongText);
         document.getElementById('proc').value = songText;
         globalEditor.setCode(songText);
+        console.log("Loaded: " + songObj);
 
     })
    
@@ -128,7 +129,7 @@ export default function StrudelDemo() {
 
 return (
     <div>
-        <h2 className="p-3" style={{textAlign: "center"}}>Strudel Editor</h2>
+        <h1 className="p-4" style={{textAlign: "center"}}>Strudel Editor</h1>
         <main>
 
             <div className="container-fluid">
@@ -165,13 +166,17 @@ return (
                 <div id="output" hidden={true} />
                 
 
-                <div className="row p-4 p-5" style={{ backgroundColor: 'darkgray' }}>
+                <div className="row p-5" style={{ backgroundColor: 'darkgray' }}>
                     <DJControls
                         songText={songText}
                         setSongText={setSongText}
                         volume={songVolume}
                         adjustVolume={(e) => setSongVolume(parseFloat(e.target.value))}
                     />
+                </div>
+                <div className="mb-4 mt-3" style={{ textAlign: 'center' }}>
+                    <h1>Edit Instruments</h1>
+                    <h5>You can edit each instrument individually here</h5>
                 </div>
                 <InstrumentControls
                     songText={songText}

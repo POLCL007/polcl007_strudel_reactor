@@ -1,4 +1,6 @@
-function DJControls({ songText, setSongText, volume, adjustVolume}) {
+import './Styling.css';
+
+function DJControls({ songText, setSongText, volume, adjustVolume }) {
 
     const changeBpm = ((e) => {
         let newBpm = e.target.value;
@@ -10,7 +12,10 @@ function DJControls({ songText, setSongText, volume, adjustVolume}) {
 
     return (
         <>
-            <div className="row mb-4 p-3">
+            <div className="row mb-3 p-3 shelfRow">
+                <div className="col-4 pt-3">
+                    <h2>Main Controls</h2>
+                </div>
                 <div className="col-4">
                     <div className="input-group mt-3">
                         <span className="input-group-text">Set CPM</span>

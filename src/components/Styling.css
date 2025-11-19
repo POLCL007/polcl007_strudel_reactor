@@ -15,3 +15,11 @@
 .sideBar {
     background-color: darkslategray;
 }
+
+.shelfRow {
+    padding: 20px;
+    border-bottom: 8px solid #8b5a2b;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    background-color: lightcoral;
+}

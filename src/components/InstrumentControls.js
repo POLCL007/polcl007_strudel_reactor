@@ -1,6 +1,7 @@
 import extractInstruments from '../utils/extractInstruments.js';
 import { useEffect, useState } from "react";
-import { ApplyInstrumentMutes }  from "../utils/PreProcess.js";
+import { ApplyInstrumentMutes } from "../utils/PreProcess.js";
+import './Styling.css';
 
 function InstrumentControls({songText, setSongText})
 {
@@ -48,18 +49,21 @@ function InstrumentControls({songText, setSongText})
     
     return (
         <div>
-
             {
                 instruments.map(instrum => (
-                    <div key={instrum}>
-                        <p>this is for {instrum["name"]}</p>
-                    <input key={instrum["name"]}
-                        type="checkbox"
-                        checked={muteStates[instrum["name"]]}
-                        onChange={() => updateMuteStates(instrum["name"])}
-                    />
-
-                </div>
+                    <div className="row m-2 shelfRow" key={instrum}>
+                        <div className="col-3">
+                            Instrument: {instrum["name"]}
+                        </div>
+                        <div className="col-3">
+                            <input key={instrum["name"]}
+                                type="checkbox"
+                                checked={muteStates[instrum["name"]]}
+                                onChange={() => updateMuteStates(instrum["name"])}
+                            />
+                            <label className="ps-3">Mute</label>
+                        </div>
+                    </div>
             ))}
         </div>
     );
