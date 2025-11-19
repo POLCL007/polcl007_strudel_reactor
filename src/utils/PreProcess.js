@@ -1,39 +1,23 @@
 import extractInstruments from './extractInstruments.js';
 
-export default function PreProcess({ unprocessedText, volume })
+export default function PreProcess({ songText, volume })
 {
-    // Add entire volume modification
-    let processedText = "all(x => x.gain({VOLUME})";
-
     // Set the volume for all instruments
-    processedText = processedText.replaceAll("{VOLUME}", volume);
-
-    // Get all instruments in the text
-    const instruments = extractInstruments(unprocessedText);
+    let processedText = songText.replaceAll("{VOLUME}", volume);
 
     return processedText;
 }
 
 export function ApplyInstrumentMutes({ songText, mutedInstruments })
 {
-    
-}
-
-export function getMutedInstruments({ songText })
-{
-    const instruments = extractInstruments(songText);
-    let muted = [];
-
-    // Run through all instruments in text
-    for (const instrument of instruments)
+    for (const instrumentName of mutedInstruments)
     {
-        // If the instrument name starts with _, it's muted in strudel
-        if (instrument["fullContent"].startsWith("_"))
+        if (mutedInstruments.includes(instrumentName)) {
+            songText.replaceAll(`${instrumentName}`, `_${instrumentName}`);
+        }
+        else
         {
-            muted.push(instrument["name"]);
+            songText.replaceAll(`_${instrumentName}`, `${instrumentName}`);
         }
     }
-
-    return muted;
-
 }

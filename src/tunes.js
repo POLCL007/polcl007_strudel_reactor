@@ -39,7 +39,7 @@ const arpeggiator2 = [
 const pattern = 0
 const bass = 0
 
-_bassline:
+bassline:
 note(pick(basslines, bass))
 .sound("supersaw")
 .postgain(2)
@@ -47,7 +47,7 @@ note(pick(basslines, bass))
 .lpf(700)
 .room(0.4)
 .postgain(pick(gain_patterns, pattern))
-.gain(1)
+.gain(1 * {VOLUME})
 
 
 main_arp: 
@@ -58,10 +58,10 @@ note(pick(arpeggiator1, "<0 1 2 3>/2"))
 .room(0.6)
 .lpenv(3.3)
 .postgain(pick(gain_patterns, pattern))
-.gain(1)
+.gain(1 * {VOLUME})
 
 
-drums:
+_drums:
 stack(
   s("tech:5")
   .postgain(6)
@@ -79,7 +79,7 @@ stack(
   .bank("[KorgDDM110, OberheimDmx]").speed(1.2)
   .postgain(.25)
 )
-.gain(1)
+.gain(1 * {VOLUME})
 
 drums2: 
 stack(
@@ -97,7 +97,7 @@ stack(
   .speed(0.5)
   .rarely(jux(rev))
 )
-.gain(1)
+.gain(1 * {VOLUME})
 
 a:
 

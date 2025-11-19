@@ -25,20 +25,22 @@ const handleD3Data = (event) => {
 
 export default function StrudelDemo() {
 
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [songText, setSongText] = useState(stranger_tune);
+    const [songVolume, setSongVolume] = useState(1);
+
     const hasRun = useRef(false);
 
     const playSong = (() => {
-
         if (songText == null) {
             alert("You can't play a song with no text");
             return;
         }
 
-        let processedText = PreProcess({ unprocessedText: songText, volume: songVolume });
-
+        let processedText = PreProcess({ songText: songText, volume: songVolume });
         globalEditor.setCode(processedText);
-        setIsPlaying(true);
         globalEditor.evaluate();
+        setIsPlaying(true);
     })
 
     const stopSong = (() => {
@@ -46,24 +48,11 @@ export default function StrudelDemo() {
         setIsPlaying(false);
     })
 
-    const procSong = (() => {
-        let processedText = PreProcess({ unprocessedText: songText, volume: songVolume });
-        globalEditor.setCode(processedText);
-        setIsPlaying(true);
-        globalEditor.evaluate();
-    });
-
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [songText, setSongText] = useState(stranger_tune);
-    const [songVolume, setSongVolume] = useState(1);
-
-    useEffect(() => {
-        if (isPlaying) playSong();
-    }, [songText, isPlaying]);
+    
 
     useEffect(() => {
         if (!hasRun.current) {
-            document.addEventListener("d3Data", handleD3Data);
+            //document.addEventListener("d3Data", handleD3Data);
             console_monkey_patch();
             hasRun.current = true;
             //Code copied from example: https://codeberg.org/uzu/strudel/src/branch/main/examples/codemirror-repl
@@ -93,9 +82,18 @@ export default function StrudelDemo() {
                 },
             });
 
-            document.getElementById('proc').value = stranger_tune;
+            document.getElementById('proc').value = songText;
+            globalEditor.setCode(songText);
         }
     }, []);
+
+    useEffect(() => {
+        console.log(songVolume);
+        let processedText = PreProcess({ songText: songText, volume: songVolume });
+        globalEditor.setCode(processedText);
+
+        if (isPlaying) playSong();
+    }, [songVolume, songText]);
 
 
 return (
@@ -106,7 +104,7 @@ return (
             <div className="container-fluid">
                 <div className="row p-4 pb-5" style={{ backgroundColor: "lightblue" }}>
                     <div className="justify-items-center">
-                        <StrudelTextVisual defaultText={""} onChange={(e) => setSongText(e.target.value)} />
+                        <StrudelTextVisual defaultText={songText} onChange={(e) => setSongText(e.target.value)} />
                     </div>
                 </div>
 
@@ -116,10 +114,16 @@ return (
                     </div>
                 </div>
 
+                <div id="editor" hidden={true} />
+                <div id="output" hidden={true} />
+                
+
                 <div className="row p-4 p-5" style={{ backgroundColor: 'darkgray' }}>
                     <DJControls
                         songText={songText}
-                        onAdjust={""}
+                        setSongText={setSongText}
+                        volume={songVolume}
+                        adjustVolume={(e) => setSongVolume(parseFloat(e.target.value))}
                     />
                 </div>
             </div>

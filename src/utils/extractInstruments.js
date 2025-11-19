@@ -1,6 +1,5 @@
 export default function extractInstruments(songText) {
     let instrumentRegex = /^_?([a-zA-Z_][a-zA-Z0-9_]*):\s*([\s\S]*?)(?=^[a-zA-Z_][a-zA-Z0-9_]*:\s*|\Z)/gm;
-
     let matches = songText.matchAll(instrumentRegex);
 
     let instruments = []
