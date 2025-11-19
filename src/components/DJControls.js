@@ -6,9 +6,7 @@ function DJControls({ songText, onMuteToggle }) {
 
 
     useEffect(() => {
-        console.log(songText);
         const instruments = extractInstruments(songText);
-        console.log(instruments);
     }, [songText]);
 
     return (

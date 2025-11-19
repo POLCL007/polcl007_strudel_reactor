@@ -12,8 +12,7 @@ import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import SongButtons from './components/SongButtons.js';
 import DJControls from './components/DJControls.js';
 import StrudelTextVisual from './components/StrudelTextVisual.js';
-import StrudelToObject from './utils/StrudelToObject.js';
-import ObjectToStrudel from './utils/ObjectToStrudel.js';
+import PreProcess from './utils/PreProcess.js';
 
 let globalEditor = null;
 
@@ -30,19 +29,14 @@ export default function StrudelDemo() {
 
     const playSong = (() => {
 
-        if (songText == null)
-        {
+        if (songText == null) {
             alert("You can't play a song with no text");
             return;
         }
 
-        // Run processing using controls such as muting
-        //let songObj = StrudelToObject({ inputText: songText });
-        console.log(songObj);
+        let processedText = PreProcess({ unprocessedText: songText, volume: songVolume });
 
-        //let songStrudel = ObjectToStrudel({ songObj: songObj });
-
-        //globalEditor.setCode(songStrudel);
+        globalEditor.setCode(processedText);
         setIsPlaying(true);
         globalEditor.evaluate();
     })
@@ -51,69 +45,21 @@ export default function StrudelDemo() {
         globalEditor.stop();
         setIsPlaying(false);
     })
-  
-    const adjustSong = (name, layerData, mod, value) => {
 
-        let newSongObj = songObj;
+    const procSong = (() => {
+        let processedText = PreProcess({ unprocessedText: songText, volume: songVolume });
+        globalEditor.setCode(processedText);
+        setIsPlaying(true);
+        globalEditor.evaluate();
+    });
 
-        // Run through all instruments
-        let changedInstrument;
-        for (const instrument of newSongObj["instruments"])
-        {
-            // If instrument matches the target
-            if (instrument["instrumentName"] == name)
-            {
-                changedInstrument = instrument;
-            }
-        }
-
-        // If no matching instrument found
-        if (changedInstrument == null)
-        {
-            alert("Attempted to edit instrument that doesn't exist");
-            return;
-        }
-
-        let modSet;
-        // If the instrument uses stack 
-        if (changedInstrument["type"] == "stack") {
-            // if modification is for one of the layers
-            if (layerData != "") {
-                // Search for the layer that will be modified
-                for (const layer of changedInstrument["typeLayers"]) {
-                    if (layer["layerData"] == layerData) {
-                        modSet = layer["modifiers"];
-                    }
-                }
-            }
-            // The modification is for the stack itself
-            else {
-                modSet = changedInstrument["modifiers"];
-            }
-        }
-        else {
-            modSet = changedInstrument["typeLayers"]["modifiers"];
-        }
-        // The modification option doesn't exist
-        if (modSet[mod] == null)
-        {
-            alert("Attempted to make a modification that doesn't exist");
-            return;
-        }
-
-        // Make the modification
-        modSet[mod] = value;
-
-        setSongObj(newSongObj);
-    }
-
-    const [songObj, setSongObj] = useState([]);
     const [isPlaying, setIsPlaying] = useState(false);
     const [songText, setSongText] = useState(stranger_tune);
+    const [songVolume, setSongVolume] = useState(1);
 
     useEffect(() => {
         if (isPlaying) playSong();
-    }, [songObj, isPlaying]);
+    }, [songText, isPlaying]);
 
     useEffect(() => {
         if (!hasRun.current) {
@@ -147,9 +93,7 @@ export default function StrudelDemo() {
                 },
             });
 
-
-
-            //document.getElementById('proc').value = ObjectToStrudel(songObj);
+            document.getElementById('proc').value = stranger_tune;
         }
     }, []);
 
@@ -175,7 +119,7 @@ return (
                 <div className="row p-4 p-5" style={{ backgroundColor: 'darkgray' }}>
                     <DJControls
                         songText={songText}
-                        onAdjust={adjustSong}
+                        onAdjust={""}
                     />
                 </div>
             </div>

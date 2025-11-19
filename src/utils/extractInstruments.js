@@ -12,6 +12,6 @@ export default function extractInstruments(songText) {
         }
         instruments.push(instrument);
     }
-    console.log(instruments);
-    return matches;
+
+    return instruments;
 }
