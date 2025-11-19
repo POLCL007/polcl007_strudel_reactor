@@ -1,6 +1,16 @@
 import InstrumentControls from './InstrumentControls.js';
+import extractInstruments from '../utils/extractInstruments.js';
+import { useEffect, useState } from "react";
 
-function DJControls({ SongObj, onVolumeChange }) {
+function DJControls({ songText, onMuteToggle }) {
+
+
+    useEffect(() => {
+        console.log(songText);
+        const instruments = extractInstruments(songText);
+        console.log(instruments);
+    }, [songText]);
+
     return (
         <>
             <div className="row mb-4 p-3">
@@ -16,20 +26,9 @@ function DJControls({ SongObj, onVolumeChange }) {
                     </div>
                     <div className="col-12">
                         <input type="range" id="volume" className="form-range" min="0" max="1"
-                            step="0.01" defaultValue={volumeValue} onChange={onVolumeChange}></input>
+                            step="0.01" defaultValue="0.5"></input>
                     </div>
                 </div>
-            </div>
-
-            <div className="row">
-
-                <div className="col-4">
-                    <InstrumentControls instrumentName="bassline"/>
-                </div>
-
-                <div className="col-4">
-                    <InstrumentControls instrumentName="main_arp" />
-                </div>    
             </div>
         </>
     )

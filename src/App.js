@@ -37,12 +37,12 @@ export default function StrudelDemo() {
         }
 
         // Run processing using controls such as muting
-        let songObj = StrudelToObject({ inputText: songText });
+        //let songObj = StrudelToObject({ inputText: songText });
         console.log(songObj);
 
-        let songStrudel = ObjectToStrudel({ songObj: songObj });
+        //let songStrudel = ObjectToStrudel({ songObj: songObj });
 
-        globalEditor.setCode(songStrudel);
+        //globalEditor.setCode(songStrudel);
         setIsPlaying(true);
         globalEditor.evaluate();
     })
@@ -51,10 +51,9 @@ export default function StrudelDemo() {
         globalEditor.stop();
         setIsPlaying(false);
     })
-
-
-    
+  
     const adjustSong = (name, layerData, mod, value) => {
+
         let newSongObj = songObj;
 
         // Run through all instruments
@@ -103,29 +102,25 @@ export default function StrudelDemo() {
         }
 
         // Make the modification
-        modifiedObjSet[mod] = value;
+        modSet[mod] = value;
 
-        // Update state variables
         setSongObj(newSongObj);
-        let newStrudel = ObjectToStrudel(newSongObj);
-        setSongText(newStrudel);
     }
 
-    const [songText, setSongText] = useState(stranger_tune)
-    const [songObj, setSongObj] = useState({});
+    const [songObj, setSongObj] = useState([]);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [volume, setVolume] = useState(0.5);
+    const [songText, setSongText] = useState(stranger_tune);
 
     useEffect(() => {
         if (isPlaying) playSong();
-    }, [songText, songObj]
+    }, [songObj, isPlaying]);
 
-useEffect(() => {
-    if (!hasRun.current) {
-        document.addEventListener("d3Data", handleD3Data);
-        console_monkey_patch();
-        hasRun.current = true;
-        //Code copied from example: https://codeberg.org/uzu/strudel/src/branch/main/examples/codemirror-repl
+    useEffect(() => {
+        if (!hasRun.current) {
+            document.addEventListener("d3Data", handleD3Data);
+            console_monkey_patch();
+            hasRun.current = true;
+            //Code copied from example: https://codeberg.org/uzu/strudel/src/branch/main/examples/codemirror-repl
             //init canvas
             const canvas = document.getElementById('roll');
             canvas.width = canvas.width * 2;
@@ -151,10 +146,12 @@ useEffect(() => {
                     await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
                 },
             });
-            
-        document.getElementById('proc').value = stranger_tune
-    }
-}, [songText]);
+
+
+
+            //document.getElementById('proc').value = ObjectToStrudel(songObj);
+        }
+    }, []);
 
 
 return (
@@ -165,7 +162,7 @@ return (
             <div className="container-fluid">
                 <div className="row p-4 pb-5" style={{ backgroundColor: "lightblue" }}>
                     <div className="justify-items-center">
-                        <StrudelTextVisual defaultText={songText} onChange={(e) => setSongText(e.target.value)} />
+                        <StrudelTextVisual defaultText={""} onChange={(e) => setSongText(e.target.value)} />
                     </div>
                 </div>
 
@@ -176,12 +173,9 @@ return (
                 </div>
 
                 <div className="row p-4 p-5" style={{ backgroundColor: 'darkgray' }}>
-                    
-
                     <DJControls
-                        songObj={songObj}
-
-                        onVolumeChange={(e) => setVolume(e.target.value)}
+                        songText={songText}
+                        onAdjust={adjustSong}
                     />
                 </div>
             </div>

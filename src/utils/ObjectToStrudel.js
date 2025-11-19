@@ -1,5 +1,7 @@
 export default function ObjectToStrudel({ songObj })
 {
+    return "";
+
     // Store globals
     let strudel = songObj["globals"];
 
