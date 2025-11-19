@@ -1,9 +1,11 @@
-export default function StrudelToObject({ inputText })
+export default function StrudelToObject(inputText)
 {
     // Matches with instruments
     // Look for [instrument name]:, and then any number of white spaces
     // and grab all lines afterwards. The match ends when finding another instrument name or string ends
     let instrumentRegex = /^([a-zA-Z_][a-zA-Z0-9_]*):\s*([\s\S]*?)(?=^[a-zA-Z_][a-zA-Z0-9_]*:\s*|\Z)/gm;
+
+    console.log(inputText);
 
     // Get a collection of all the matches/instruments
     const instrumentMatches = inputText.matchAll(instrumentRegex);

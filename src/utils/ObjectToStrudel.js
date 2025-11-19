@@ -1,8 +1,8 @@
-export default function ObjectToStrudel({ songObj })
+export default function ObjectToStrudel(songObj)
 {
-    return "";
-
     // Store globals
+    console.log(songObj);
+
     let strudel = songObj["globals"];
 
     // For each instrument

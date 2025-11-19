@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import PreProcess from '../utils/PreProcess.js';
+import ObjectToStrudel from '../utils/ObjectToStrudel.js';
+import StrudelToObject from '../utils/StrudelToObject.js';
 
-function Options({ inputHidden, toggleInput }) {
+function Options({ inputHidden, toggleInput, songText, setSongText, loadSave }) {
 
     const [toggleBtnSettings, setToggleBtnSettings] = useState({});
 
@@ -8,7 +11,6 @@ function Options({ inputHidden, toggleInput }) {
     useEffect(() => {
         let toggleSettings = {
             bgColour: 'gray',
-            textColour: 'white',
             text: 'Erorr setting up toggle button'
         };
 
@@ -24,22 +26,26 @@ function Options({ inputHidden, toggleInput }) {
         setToggleBtnSettings(toggleSettings);
     }, [inputHidden]);
 
+
+    const saveJson = (() => {
+        // As part of the conversion process, invalid text is removed, keeping only whats valid
+        // It also rejects invalid text
+        let songObj = StrudelToObject(songText);
+        let jsonVersion = JSON.stringify(songObj);
+
+        localStorage.setItem("songSave", jsonVersion);
+        alert("Saved strudel song");
+    });
+
     return (
-        <>
-            <div className="p-2" style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'darkred'}}>
-                <button className="btn btn-secondary"
-                    style={{
-                        border: "1px solid black", backgroundColor: `${toggleBtnSettings.bgColour}`,
-                        textColour: `${toggleBtnSettings.textColour}`
-                    }}
+            <div className="p-3" style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'darkred'}}>
+                <button className="btn btn-secondary mb-3"
+                    style={{border: "1px solid black", backgroundColor: `${toggleBtnSettings.bgColour}`}}
                     onClick={toggleInput}>{toggleBtnSettings.text}</button>
 
-                <button>A</button>
-                <button>A</button>
+            <button onClick={saveJson}>Save</button>
+            <button onClick={loadSave}>Load</button>
             </div>
-            
-            
-        </>
     )
 }
 export default Options;

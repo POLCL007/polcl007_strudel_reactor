@@ -13,6 +13,7 @@ import SongButtons from './components/SongButtons.js';
 import DJControls from './components/DJControls.js';
 import PreProcess from './utils/PreProcess.js';
 import Options from './components/Options';
+import ObjectToStrudel from './utils/ObjectToStrudel.js';
 
 let globalEditor = null;
 
@@ -62,6 +63,19 @@ export default function StrudelDemo() {
         {
             inputHeader.textContent = "Enter your strudel code here!";
         }
+    })
+
+
+    const loadSave = (() => {
+        let songJson = localStorage.getItem("songSave");
+        let songObj = JSON.parse(songJson);
+        let newSongText = ObjectToStrudel(songObj);
+
+        alert("Loaded saved strudel");
+        setSongText(newSongText);
+        document.getElementById('proc').value = songText;
+        globalEditor.setCode(songText);
+
     })
    
 
@@ -126,6 +140,9 @@ return (
                         <Options
                             inputHidden={inputHidden}
                             toggleInput={toggleInputVisible}
+                            songText={songText}
+                            setSongText={setSongText}
+                            loadSave={loadSave}
                         />
                     </div>
                 </div>
