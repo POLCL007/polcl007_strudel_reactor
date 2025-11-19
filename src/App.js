@@ -11,8 +11,8 @@ import { stranger_tune } from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import SongButtons from './components/SongButtons.js';
 import DJControls from './components/DJControls.js';
-import StrudelTextVisual from './components/StrudelTextVisual.js';
 import PreProcess from './utils/PreProcess.js';
+import Options from './components/Options';
 
 let globalEditor = null;
 
@@ -28,6 +28,7 @@ export default function StrudelDemo() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [songText, setSongText] = useState(stranger_tune);
     const [songVolume, setSongVolume] = useState(1);
+    const [inputHidden, setInputHidden] = useState(false);
 
     const hasRun = useRef(false);
 
@@ -48,7 +49,21 @@ export default function StrudelDemo() {
         setIsPlaying(false);
     })
 
-    
+    const toggleInputVisible = (() => {
+
+        const isHidden = !inputHidden;
+        setInputHidden(isHidden);
+
+        const inputHeader = document.getElementById("inputHeader");
+        if (isHidden) {
+            inputHeader.textContent = "Your strudel code is hidden"
+        }
+        else
+        {
+            inputHeader.textContent = "Enter your strudel code here!";
+        }
+    })
+   
 
     useEffect(() => {
         if (!hasRun.current) {
@@ -88,7 +103,6 @@ export default function StrudelDemo() {
     }, []);
 
     useEffect(() => {
-        console.log(songVolume);
         let processedText = PreProcess({ songText: songText, volume: songVolume });
         globalEditor.setCode(processedText);
 
@@ -103,8 +117,16 @@ return (
 
             <div className="container-fluid">
                 <div className="row p-4 pb-5" style={{ backgroundColor: "lightblue" }}>
-                    <div className="justify-items-center">
-                        <StrudelTextVisual defaultText={songText} onChange={(e) => setSongText(e.target.value)} />
+                    <div className="col-8">
+                        <h2 id="inputHeader" style={{ textAlign: 'center' }}>Enter your strudel code here!</h2>
+                        <textarea id="proc" className="form-control" defaultValue={songText}
+                            rows="15" hidden={inputHidden} />
+                    </div>
+                    <div className="col-4">
+                        <Options
+                            inputHidden={inputHidden}
+                            toggleInput={toggleInputVisible}
+                        />
                     </div>
                 </div>
 
