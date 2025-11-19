@@ -1,11 +1,4 @@
-import InstrumentControls from './InstrumentControls.js';
-import extractInstruments from '../utils/extractInstruments.js';
-import { useEffect, useState } from "react";
-
 function DJControls({ songText, setSongText, volume, adjustVolume}) {
-
-    const [muted, setMuted] = useState([])
-
 
     const changeBpm = ((e) => {
         let newBpm = e.target.value;
@@ -14,21 +7,6 @@ function DJControls({ songText, setSongText, volume, adjustVolume}) {
         setSongText(newSongText);
     });
 
-
-    useEffect(() => {
-        const instruments = extractInstruments(songText);
-
-        let mutedInstruments = []
-        for (const instrument of instruments)
-        {
-            if (instrument["fullContent"].startsWith("_"))
-            {
-                mutedInstruments.push(instrument["name"]);
-            }
-        }
-        setMuted(mutedInstruments);
-
-    }, [songText]);
 
     return (
         <>

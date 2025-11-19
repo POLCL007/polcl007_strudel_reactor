@@ -1,12 +1,63 @@
-import controlsBlock from './Styling.css';
+import extractInstruments from '../utils/extractInstruments.js';
+import { useEffect, useState } from "react";
+import { ApplyInstrumentMutes }  from "../utils/PreProcess.js";
 
-function InstrumentControls({ instrumentText })
+function InstrumentControls({songText, setSongText})
 {
+    const [instruments, setInstruments] = useState([]);
+    const [muteStates, setMuteStates] = useState({});
 
+    useEffect(() => {
+        let instrums = extractInstruments(songText);
+        setInstruments(instrums);
+        updateMuteStates("");
+    }, []);
+
+    const updateMuteStates = ((instr) => {
+        let newStates = {};
+        console.log(muteStates);
+
+        for (const ins of instruments)
+        {
+            // If there is a _ at the start, its muted
+            if (ins["fullContent"].startsWith("_")) {
+                newStates[ins["name"]] = true;
+            }
+            // If not, its playing
+            else
+            {
+                newStates[ins["name"]] = false;
+            }
+
+            // Switch the state of instrumetn
+            if (ins["name"] == instr)
+            {
+                const current = newStates[instr]
+                newStates[instr] = !current;
+            }
+        }
+
+        let newSongText = ApplyInstrumentMutes(songText, newStates);
+        setMuteStates(newStates);
+        setSongText(newSongText);
+    });
+    
     return (
-        <div className="m-2 pt-2 controlsBlock">
-           
+        <div>
+
+            {
+                instruments.map(instrum => (
+                    <div key={instrum}>
+                        <p>this is for {instrum["name"]}</p>
+                    <input key={instrum["name"]}
+                        type="checkbox"
+                        checked={muteStates[instrum["name"]]}
+                        onChange={() => updateMuteStates(instrum["name"])}
+                    />
+
+                </div>
+            ))}
         </div>
-    )
+    );
 }
-export default InstrumentControls;
+export default A;

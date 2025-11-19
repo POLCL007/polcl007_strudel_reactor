@@ -15,6 +15,7 @@ import PreProcess from './utils/PreProcess.js';
 import Options from './components/Options';
 import ObjectToStrudel from './utils/ObjectToStrudel.js';
 import './components/Styling.css';
+import InstrumentControl from './components/InstrumentControls.js';
 
 let globalEditor = null;
 
@@ -173,6 +174,7 @@ return (
                         adjustVolume={(e) => setSongVolume(parseFloat(e.target.value))}
                     />
                 </div>
+                <A songText={songText} />
             </div>
             <canvas id="roll"></canvas>
         </main >

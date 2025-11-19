@@ -26,6 +26,7 @@ function Options({ inputHidden, toggleInput, songText, setSongText, loadSave }) 
 
 
     const saveJson = (() => {
+        console.log("A");
         // As part of the conversion process, invalid text is removed, keeping only whats valid
         // It also rejects invalid text
         let songObj = StrudelToObject(songText);

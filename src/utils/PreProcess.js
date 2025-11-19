@@ -8,16 +8,22 @@ export default function PreProcess({ songText, volume })
     return processedText;
 }
 
-export function ApplyInstrumentMutes({ songText, mutedInstruments })
+export function ApplyInstrumentMutes( songText, instrumentStates)
 {
-    for (const instrumentName of mutedInstruments)
+    console.log(instrumentStates);
+
+    for (const nameKey in instrumentStates)
     {
-        if (mutedInstruments.includes(instrumentName)) {
-            songText.replaceAll(`${instrumentName}`, `_${instrumentName}`);
+        let state = instrumentStates[nameKey];
+        if (state == true) {
+            songText = songText.replaceAll(`${nameKey}`, `_${nameKey}`);
+            console.log(`Make sure that ${nameKey} off`)
         }
         else
         {
-            songText.replaceAll(`_${instrumentName}`, `${instrumentName}`);
+            songText = songText.replaceAll(`_${nameKey}`, `${nameKey}`);
         }
     }
+
+    return songText;
 }
