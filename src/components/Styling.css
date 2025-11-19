@@ -1,0 +1,17 @@
+.controlsBlock {
+    display: flex;
+    background-color: white;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 2px solid black;
+}
+
+.sideBar, .sideBar > * {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sideBar {
+    background-color: darkslategray;
+}

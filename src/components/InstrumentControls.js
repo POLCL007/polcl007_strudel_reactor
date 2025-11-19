@@ -1,4 +1,4 @@
-import '../utils/InstrumentControlsStyle.css';
+import controlsBlock from './Styling.css';
 
 function InstrumentControls({ instrumentText })
 {

@@ -14,6 +14,7 @@ import DJControls from './components/DJControls.js';
 import PreProcess from './utils/PreProcess.js';
 import Options from './components/Options';
 import ObjectToStrudel from './utils/ObjectToStrudel.js';
+import './components/Styling.css';
 
 let globalEditor = null;
 
@@ -137,21 +138,28 @@ return (
                             rows="15" hidden={inputHidden} />
                     </div>
                     <div className="col-4">
-                        <Options
-                            inputHidden={inputHidden}
-                            toggleInput={toggleInputVisible}
-                            songText={songText}
-                            setSongText={setSongText}
-                            loadSave={loadSave}
-                        />
+                        <div className="p-3 sideBar">
+                            <>
+                                <Options
+                                    inputHidden={inputHidden}
+                                    toggleInput={toggleInputVisible}
+                                    songText={songText}
+                                    setSongText={setSongText}
+                                    loadSave={loadSave}
+                                />
+                                <div className="m-5 justify-content-center">
+                                <SongButtons
+                                    onPlay={playSong}
+                                    onStop={stopSong}
+                                    isPlaying={isPlaying}
+                                    />
+                                </div>
+                            </>
+                        </div>
                     </div>
                 </div>
 
-                <div className="row p-4" style={{ backgroundColor: "white" }}>
-                    <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-                        <SongButtons onPlay={playSong} onStop={stopSong} isPlaying={isPlaying} />
-                    </div>
-                </div>
+                
 
                 <div id="editor" hidden={true} />
                 <div id="output" hidden={true} />

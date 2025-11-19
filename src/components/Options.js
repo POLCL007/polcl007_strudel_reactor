@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import PreProcess from '../utils/PreProcess.js';
-import ObjectToStrudel from '../utils/ObjectToStrudel.js';
 import StrudelToObject from '../utils/StrudelToObject.js';
 
 function Options({ inputHidden, toggleInput, songText, setSongText, loadSave }) {
@@ -38,14 +36,13 @@ function Options({ inputHidden, toggleInput, songText, setSongText, loadSave }) 
     });
 
     return (
-            <div className="p-3" style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'darkred'}}>
-                <button className="btn btn-secondary mb-3"
+            <>
+            <button className="btn btn-secondary mb-3"
                     style={{border: "1px solid black", backgroundColor: `${toggleBtnSettings.bgColour}`}}
                     onClick={toggleInput}>{toggleBtnSettings.text}</button>
-
-            <button onClick={saveJson}>Save</button>
-            <button onClick={loadSave}>Load</button>
-            </div>
+            <button className="btn btn-warning mb-2" onClick={saveJson}>Save</button>
+            <button className="btn btn-warning" onClick={loadSave}>Load</button>
+            </>
     )
 }
 export default Options;
