@@ -13,3 +13,27 @@ export default function PreProcess({ unprocessedText, volume })
 
     return processedText;
 }
+
+export function ApplyInstrumentMutes({ songText, mutedInstruments })
+{
+    
+}
+
+export function getMutedInstruments({ songText })
+{
+    const instruments = extractInstruments(songText);
+    let muted = [];
+
+    // Run through all instruments in text
+    for (const instrument of instruments)
+    {
+        // If the instrument name starts with _, it's muted in strudel
+        if (instrument["fullContent"].startsWith("_"))
+        {
+            muted.push(instrument["name"]);
+        }
+    }
+
+    return muted;
+
+}
