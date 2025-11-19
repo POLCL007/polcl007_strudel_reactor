@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import StrudelToObject from '../utils/StrudelToObject.js';
 
-function Options({ inputHidden, toggleInput, songText, setSongText, loadSave }) {
+function Options({ inputHidden, toggleInput, songText, loadSave }) {
 
     const [toggleBtnSettings, setToggleBtnSettings] = useState({});
 

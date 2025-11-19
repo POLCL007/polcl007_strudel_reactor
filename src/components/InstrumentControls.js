@@ -10,7 +10,6 @@ function InstrumentControls({songText, setSongText})
     useEffect(() => {
         let instrums = extractInstruments(songText);
         setInstruments(instrums);
-        updateMuteStates("");
     }, []);
 
     const updateMuteStates = ((instr) => {
@@ -32,10 +31,15 @@ function InstrumentControls({songText, setSongText})
             // Switch the state of instrumetn
             if (ins["name"] == instr)
             {
-                const current = newStates[instr]
+                console.log("Switch state for " + instr);
+                let current = newStates[instr]
+                console.log("It was " + current);
                 newStates[instr] = !current;
+                console.log("Switched it to " + newStates[instr]);
             }
         }
+        console.log(muteStates);
+        console.log("End");
 
         let newSongText = ApplyInstrumentMutes(songText, newStates);
         setMuteStates(newStates);
@@ -60,4 +64,4 @@ function InstrumentControls({songText, setSongText})
         </div>
     );
 }
-export default A;
+export default InstrumentControls;

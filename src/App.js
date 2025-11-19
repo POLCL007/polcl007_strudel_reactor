@@ -15,7 +15,7 @@ import PreProcess from './utils/PreProcess.js';
 import Options from './components/Options';
 import ObjectToStrudel from './utils/ObjectToStrudel.js';
 import './components/Styling.css';
-import InstrumentControl from './components/InstrumentControls.js';
+import InstrumentControls from './components/InstrumentControls.js';
 
 let globalEditor = null;
 
@@ -145,7 +145,6 @@ return (
                                     inputHidden={inputHidden}
                                     toggleInput={toggleInputVisible}
                                     songText={songText}
-                                    setSongText={setSongText}
                                     loadSave={loadSave}
                                 />
                                 <div className="m-5 justify-content-center">
@@ -174,7 +173,10 @@ return (
                         adjustVolume={(e) => setSongVolume(parseFloat(e.target.value))}
                     />
                 </div>
-                <A songText={songText} />
+                <InstrumentControls
+                    songText={songText}
+                    setSongText={setSongText}
+                />
             </div>
             <canvas id="roll"></canvas>
         </main >
