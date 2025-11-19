@@ -4,9 +4,10 @@ Name: Cameron Pollard-Grunill
 ID: 110445197 POLCL007
 
 ## Demo video
+https://www.youtube.com/watch?v=dKRZy1bqEH8
 
 ## Quirks
-For some reason, the final instrument will not be read, therefore to fix this, at the end of the file, put a "a:"
+For some reason, the final instrument will not be read, therefore to fix this, at the end of the file, put a "a:", this then removes this "a:" and keeps the real instruments
 
 ## Introduction
 This application was designed for the purpoose of allowing easy editing of strudel music and saving presets
